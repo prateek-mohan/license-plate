@@ -103,7 +103,7 @@ class DetectionPredictor(BasePredictor):
                 byte_im = im_buf_arr.tobytes()
                 # Generate a unique name for the blob
                 now = datetime.datetime.now()
-                blob_name = f"myimage_{now.strftime('%Y%m%d%H%M%S')}.jpg"
+                blob_name = f"myimage.jpg"#_{now.strftime('%Y%m%d%H%M%S')}.jpg" 
  
                 # Upload to Azure Blob Storage
                 my_connection_string='DefaultEndpointsProtocol=https;AccountName=aiworkspace4684782811;AccountKey=W7ibcV7jRMT/zTRbAZtTgq600jthxpQdWZ/MFAjgtpEULGFteQrgxtMp7XgG/y71Gi5E1QHoI2PB+AStCeppaQ==;EndpointSuffix=core.windows.net'
@@ -114,7 +114,7 @@ class DetectionPredictor(BasePredictor):
                     print("\nUploading to Azure Storage as blob:\n\t" + "myimage.jpg")
  
                     # Upload the created file
-                    blob_client.upload_blob(byte_im)
+                    blob_client.upload_blob(byte_im,overwrite=True)
  
                 except Exception as ex:
                     print('Exception:')
